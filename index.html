@@ -1,2 +1,109 @@
-<div class="iactiveImg" data-ii="61066"></div>
-<script src="https://interactive-img.com/js/include.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Image</title>
+    <style>
+        /* Full screen setup */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Hide global scrollbars */
+        }
+
+        /* Image container with vertical scroll */
+        .image-container {
+            position: relative;
+            width: 100vw; /* 100% of the viewport width */
+            height: 100vh; /* 100% of the viewport height */
+            overflow-y: auto; /* Vertical scrolling enabled */
+            overflow-x: hidden; /* Disable horizontal scrolling */
+        }
+
+        img {
+            width: 100%; /* Ensure the image fits the full width */
+            height: auto; /* Maintain aspect ratio and allow height to grow */
+        }
+
+        /* Style for the clickable dot */
+        .dot {
+            position: absolute;
+            top: 10px; /* Slightly away from the top-left corner */
+            left: 10px; /* Slightly away from the top-left corner */
+            width: 25px;
+            height: 25px;
+            background-color: #003399; /* Updated to the requested color */
+            border-radius: 50%;
+            cursor: pointer;
+            animation: beat 1.5s infinite; /* Beating animation */
+        }
+
+        /* Keyframes for the dot's beating animation */
+        @keyframes beat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.3);
+            }
+        }
+
+        /* Style for the popup text box */
+        .popup {
+            display: none;
+            position: absolute;
+            top: 50px; /* Adjusted relative to the dot */
+            left: 50px; /* Adjusted relative to the dot */
+            background-color: white;
+            padding: 15px;
+            border: 2px solid black;
+            border-radius: 8px;
+            width: 250px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif; /* Updated font */
+        }
+
+        .popup.active {
+            display: block; /* Show the popup when active */
+        }
+
+        /* Title and text styles */
+        .popup-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .popup-text {
+            font-size: 18px; /* Updated font size to 18px */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="image-container">
+        <img src="https://github.com/blanca-pavon/iframe-four/blob/main/RigolDS2520.png?raw=true" alt="Interactive Image">
+        <div class="dot" onclick="togglePopup()"></div>
+        <div class="popup" id="popup">
+            <div class="popup-title">ANALYSIS OF RESULTS</div>
+            <div class="popup-text">
+                 The plot shows output 1 (yellow) and output 2 (blue). Note that the values read by the oscilloscope do not show the ±3kV, as the probes are set on the characteristic loads in this case. <br />
+                  <br />
+                  The polarity change is working properly, though the issues with the first output (in magnitude) can be observed here. <br />
+                  <br />
+                  The image above clearly proves that the tests are giving the desired results, as the quadratic wave mentioned earlier is now seen experimentally. However, it is important to note that the notably lower magnitude of the second output is not relevant, as it is an issue of the High Voltage Operation testing (already stated) and does not affect how the polarity changes.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to toggle the popup
+        function togglePopup() {
+            var popup = document.getElementById("popup");
+            popup.classList.toggle("active"); // Toggles the active class on the popup
+        }
+    </script>
+
+</body>
+</html>
